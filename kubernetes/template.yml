@@ -1,0 +1,285 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservation-platform-development
+  labels:
+    app: reservation-platform-development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reservation-platform-development
+  template:
+    metadata:
+      labels:
+        app: reservation-platform-development
+    spec:
+      containers:
+        - name: reservation-platform-development
+          image: username/reservation-platform-development:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: partnership-management
+  labels:
+    app: partnership-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: partnership-management
+  template:
+    metadata:
+      labels:
+        app: partnership-management
+    spec:
+      containers:
+        - name: partnership-management
+          image: username/partnership-management:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketing-and-advertising
+  labels:
+    app: marketing-and-advertising
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: marketing-and-advertising
+  template:
+    metadata:
+      labels:
+        app: marketing-and-advertising
+    spec:
+      containers:
+        - name: marketing-and-advertising
+          image: username/marketing-and-advertising:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-support-and-assistance
+  labels:
+    app: customer-support-and-assistance
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer-support-and-assistance
+  template:
+    metadata:
+      labels:
+        app: customer-support-and-assistance
+    spec:
+      containers:
+        - name: customer-support-and-assistance
+          image: username/customer-support-and-assistance:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: financial-management
+  labels:
+    app: financial-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: financial-management
+  template:
+    metadata:
+      labels:
+        app: financial-management
+    spec:
+      containers:
+        - name: financial-management
+          image: username/financial-management:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: reservation-platform-development
+  labels:
+    app: reservation-platform-development
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: reservation-platform-development
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: partnership-management
+  labels:
+    app: partnership-management
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: partnership-management
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: marketing-and-advertising
+  labels:
+    app: marketing-and-advertising
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: marketing-and-advertising
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer-support-and-assistance
+  labels:
+    app: customer-support-and-assistance
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: customer-support-and-assistance
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: financial-management
+  labels:
+    app: financial-management
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: financial-management
+
